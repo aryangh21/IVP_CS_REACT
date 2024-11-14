@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import DataGrid from './pages/datagrid';
+import Dashboard from './pages/StockDashboard';
+import DataGridWrapper from './pages/test';
+import RightNavbar from './components/Navbar'; // Import the RightNavbar component
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div style={{ display: 'flex' }}>
+        <RightNavbar /> {
+                  <div style={{ flexGrow: 1 }}>
+                  <Routes>
+                    <Route path="/" element={<DataGrid />} />
+                    <Route path="/dashboard/:ticker" element={<Dashboard />} />
+                    <Route path="/test" element={<DataGridWrapper />} />
+                  </Routes>
+                </div>
+        }
+      </div>
+    </Router>
   );
 }
 
